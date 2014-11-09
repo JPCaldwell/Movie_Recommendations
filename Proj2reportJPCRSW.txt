@@ -1,0 +1,18 @@
+Jeremy Caldwell
+Ryan Wymyczak
+Project 2 report questions
+
+(a)
+
+For the data structure in MovieBase to hold all Movies, a vector was chosen because of ease of use and constant-time indexing and the movies would only be indexed by ID number, so lookup would always be constant.  Different data structures, such as maps, were considered, but constant-time lookup by movie ID number was deemed more important than faster searching.
+
+For finding averages for the movies, looping through all users and looking at their reviews was a function in MovieBase that was considered.  This was deemed to be too inefficient as looping through the massive numbers of reviews could be avoided.  What was implemented instead was when the reviews were read in from the file in UserBase, UserBase would send the rating from that review to the Movie, thus eliminating the need for searching through all reviews after they were all read in from the file.
+
+For the UserBase, a vector was chosen to store all the users. The vector was chosen because it allows constant time indexing if you store the users in a way that their ID matches the vector index where they are stored.  One alternative considered was to store the users in a binary tree.  The rationale for using a binary tree was that users' IDs might not be nice numbers that follow a sequence like they do in our project.  For example, one user could have an ID of 1000 while all the other users have IDs in the single digits.
+
+For the User class, a map was chosen to store each user's preference factor for each genre.  The map was chosen because the genre and preference factor needed to be paired together in some way, and the map allowed the easiest method of directly pairing each genre with the preference factor.  One alternative considered was to create an object that pairs genres with each user's preference factor. The map was deemed easier to use.
+
+(b)
+
+The runtime of the simulation is O(M+R+U+UM).  Parsing the movies, calculating the average rating for each movie, and calculating the genre averages are all O(M).  O(M) + O(M) + O(M) = O(M).  Parsing the users and calculating each user's preference factors are O(U), so the runtime for both is also O(U).
+Parsing the user reviews are O(R).  Calculating the top recommendations for each user is O(UM) as each user has to look through all the movies.  To get the overall runtime, each of these runtimes are added together to get the overall runtime of O(M+R+U+UM).
